@@ -1,6 +1,8 @@
 package com.github.tatercertified.lifesteal.util;
 
 import net.fabricmc.loader.api.FabricLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -13,6 +15,7 @@ public class Config {
     private static final String cfgver = "1.4";
     public static String revivalBlock;
     public static boolean generateOres;
+    private static final Logger LOGGER = LoggerFactory.getLogger("Lifesteal-Config");
 
 
     public static void init() {
@@ -22,19 +25,19 @@ public class Config {
             try {
                 mkfile();
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error("Failed to create config: ", e);
             }
         } else {
             try {
                 loadcfg();
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error("Failed to load config: ", e);
             }
             if (!(Objects.equals(properties.getProperty("config-version"), cfgver))) {
                 try {
                     mkfile();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.error("Failed to update config: ", e);
                 }
             } else {
                 parse();

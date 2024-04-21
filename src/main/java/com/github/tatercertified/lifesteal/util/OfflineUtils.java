@@ -36,7 +36,7 @@ public final class OfflineUtils {
         final Path dat = dir.resolve(profile.getId() + ".dat");
         if (Files.exists(dat) && Files.isRegularFile(dat)) {
             try (final InputStream stream = Files.newInputStream(dat)) {
-                final NbtCompound compound = NbtIo.readCompressed(stream);
+                final NbtCompound compound = NbtIo.readCompressed(stream, NbtSizeTracker.ofUnlimitedBytes());
                 return new OfflinePlayerData(profile, compound, dir);
             } catch (IOException ioe) {
                 logger.warn("Unable to read NBT for {}", profile, ioe);

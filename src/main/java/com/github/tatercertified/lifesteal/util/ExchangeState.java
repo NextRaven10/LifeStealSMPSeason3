@@ -20,7 +20,8 @@ public enum ExchangeState {
     FAIL_MISSING(LsText::notFound),
     FAIL_RECEIVER_TOO_MUCH_HEALTH(LsText::receiverMaxHealth),
     FAIL_GIVER_TOO_LITTLE_HEALTH(player -> LsText.LOW_HEALTH),
-    SUCCESS(player -> Text.of(null));
+    // TODO See if text.empty() is the same as text.of(null)
+    SUCCESS(player -> Text.empty());
 
     public final Function<Text, Text> message;
 

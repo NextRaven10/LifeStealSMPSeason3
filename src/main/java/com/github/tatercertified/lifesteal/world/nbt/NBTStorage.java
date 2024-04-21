@@ -1,6 +1,7 @@
 package com.github.tatercertified.lifesteal.world.nbt;
 
 import com.github.tatercertified.lifesteal.Loader;
+import net.minecraft.datafixer.DataFixTypes;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
@@ -25,9 +26,15 @@ public class NBTStorage extends PersistentState {
         return state;
     }
 
-    public static NBTStorage getServerState(MinecraftServer server) {
-        PersistentStateManager manager = server.getWorld(World.OVERWORLD).getPersistentStateManager();
+    private static PersistentState.Type<NBTStorage> getPersistentStateType() {
+        return new PersistentState.Type<>(NBTStorage::new, NBTStorage::createFromNbt, DataFixTypes.LEVEL);
+    }
 
-        return manager.getOrCreate(NBTStorage::createFromNbt, NBTStorage::new, Loader.MOD_ID);
+    public static NBTStorage getServerState(MinecraftServer server) {
+        PersistentStateManager persistentStateManager = server.getWorld(World.OVERWORLD).getPersistentStateManager();
+
+        return persistentStateManager.getOrCreate(
+                NBTStorage.getPersistentStateType(),
+                Loader.MOD_ID);
     }
 }
