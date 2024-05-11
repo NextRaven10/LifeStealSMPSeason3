@@ -23,11 +23,6 @@ public class HeartOre extends Block implements PolymerTexturedBlock {
 
 
     @Override
-    public Block getPolymerBlock(BlockState state) {
-        return this.polymerBlockState.getBlock();
-    }
-
-    @Override
     public BlockState getPolymerBlockState(BlockState state) {
         return this.polymerBlockState;
     }

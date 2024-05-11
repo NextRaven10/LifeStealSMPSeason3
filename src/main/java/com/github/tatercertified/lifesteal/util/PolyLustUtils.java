@@ -2,7 +2,6 @@ package com.github.tatercertified.lifesteal.util;// Created 2022-13-07T01:12:20
 
 import eu.pb4.polymer.resourcepack.api.PolymerModelData;
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -32,7 +31,7 @@ public class PolyLustUtils {
     public static Item ofModelled(@NotNull String path, @NotNull Item mask) {
         Objects.requireNonNull(path, "Invalid registry path.");
         check(mask);
-        var item = new ModelledPolymerItem(new FabricItemSettings(), getModelData(path, mask));
+        var item = new ModelledPolymerItem(new Item.Settings(), getModelData(path, mask));
         registerItem(path, item);
         return item;
     }
@@ -49,7 +48,7 @@ public class PolyLustUtils {
                                                 BiFunction<Item.Settings, PolymerModelData, T> constructor) {
         Objects.requireNonNull(path, "Invalid registry path.");
         check(mask);
-        T item = constructor.apply(new FabricItemSettings(), getModelData(path, mask));
+        T item = constructor.apply(new Item.Settings(), getModelData(path, mask));
         registerItem(path, item);
         return item;
     }

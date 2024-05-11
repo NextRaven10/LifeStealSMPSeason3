@@ -7,6 +7,7 @@ import eu.pb4.polymer.resourcepack.api.PolymerModelData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CandleBlock;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -202,11 +203,15 @@ public class HeartItem extends ModelledPolymerItem {
             throw new AssertionError("stack is empty");
         }
 
-        if (stack.hasCustomName()) {
+        if (hasCustomName(stack)) {
             return stack.getName().getString();
         }
 
         return null;
+    }
+
+    private static boolean hasCustomName(ItemStack stack) {
+        return stack.get(DataComponentTypes.CUSTOM_NAME) != null;
     }
 
     public static boolean isAltar(World world, BlockPos pos) {

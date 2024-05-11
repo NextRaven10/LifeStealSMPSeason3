@@ -8,6 +8,7 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.WorldSavePath;
@@ -20,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public final class OfflineUtils {
     private static final Logger logger = LogUtils.getLogger();
@@ -86,10 +88,12 @@ public final class OfflineUtils {
                 continue;
             }
 
+
+
             final var inst = new EntityAttributeInstance(attribute, ignored -> {
             });
             inst.readNbt(compound);
-            ret.put(attribute, inst);
+            ret.put(attribute.value(), inst);
         }
 
         return ret;
@@ -115,7 +119,7 @@ public final class OfflineUtils {
     /**
      * Fetches the entity attribute by the given ID if it is one
      */
-    private static EntityAttribute getAttributeByName(NbtElement element) {
+    private static RegistryEntry<EntityAttribute> getAttributeByName(NbtElement element) {
         if (!(element instanceof NbtString string)) {
             return null;
         }
@@ -123,7 +127,9 @@ public final class OfflineUtils {
         if (id == null) {
             return null;
         }
-        return Registries.ATTRIBUTE.get(id);
+
+        final Optional<RegistryEntry.Reference<EntityAttribute>> registry = Registries.ATTRIBUTE.getEntry(id);
+        return registry.orElse(null);
     }
 
     /**
@@ -139,7 +145,7 @@ public final class OfflineUtils {
             return false;
         }
 
-        final var health = getAttribute(playerData, EntityAttributes.GENERIC_MAX_HEALTH);
+        final var health = getAttribute(playerData, EntityAttributes.GENERIC_MAX_HEALTH.value());
         if (health != null) {
             return health.getBaseValue() < server.getGameRules().getInt(LSGameRules.MINPLAYERHEALTH);
         }
