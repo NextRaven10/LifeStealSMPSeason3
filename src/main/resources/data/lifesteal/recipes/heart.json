@@ -14,6 +14,7 @@
     }
   },
   "result": {
-    "item": "lifesteal:heart"
+    "count": 1,
+    "id": "lifesteal:heart"
   }
 }

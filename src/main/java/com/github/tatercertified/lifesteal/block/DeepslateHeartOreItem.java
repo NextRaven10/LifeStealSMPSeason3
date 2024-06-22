@@ -20,7 +20,7 @@ public class DeepslateHeartOreItem extends BlockItem implements PolymerItem {
 
     public DeepslateHeartOreItem(Settings settings, Block block, String modelId) {
         super(block, settings);
-        this.polymerModel = PolymerResourcePackUtils.requestModel(Items.BARRIER, new Identifier(MOD_ID, modelId));
+        this.polymerModel = PolymerResourcePackUtils.requestModel(Items.BARRIER, Identifier.of(MOD_ID, modelId));
 
     }
 

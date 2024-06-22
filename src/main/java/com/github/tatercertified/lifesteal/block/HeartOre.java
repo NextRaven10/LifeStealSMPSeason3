@@ -17,7 +17,7 @@ public class HeartOre extends Block implements PolymerTexturedBlock {
 
         this.polymerBlockState = PolymerBlockResourceUtils.requestBlock(
                 type,
-                PolymerBlockModel.of(new Identifier(Loader.MOD_ID, modelId)));
+                PolymerBlockModel.of(Identifier.of(Loader.MOD_ID, modelId)));
 
     }
 

@@ -27,7 +27,7 @@ public class ModBlocks {
     }
 
     public static void registerDeep(BlockModelType type, String modelId) {
-        var DEEP = new Identifier(Loader.MOD_ID, modelId);
+        var DEEP = Identifier.of(Loader.MOD_ID, modelId);
         DEEP_BLOCK = Registry.register(Registries.BLOCK, DEEP,
                 new DeepslateHeartOre(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_DIAMOND_ORE).requiresTool().strength(6.0f, 6.0f).sounds(BlockSoundGroup.DEEPSLATE), type, modelId));
 
@@ -35,7 +35,7 @@ public class ModBlocks {
     }
 
     public static void register(BlockModelType type, String modelId) {
-        var NORMAL = new Identifier(Loader.MOD_ID, modelId);
+        var NORMAL = Identifier.of(Loader.MOD_ID, modelId);
         NORMAL_BLOCK = Registry.register(Registries.BLOCK, NORMAL,
                 new HeartOre(AbstractBlock.Settings.copy(Blocks.DIAMOND_ORE).requiresTool().strength(6.0f, 6.0f).sounds(BlockSoundGroup.STONE), type, modelId));
 

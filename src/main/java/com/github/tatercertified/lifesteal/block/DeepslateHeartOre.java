@@ -20,7 +20,7 @@ public class DeepslateHeartOre extends Block implements PolymerTexturedBlock {
 
         this.polymerBlockState = PolymerBlockResourceUtils.requestBlock(
                 type,
-                PolymerBlockModel.of(new Identifier(MOD_ID, modelId)));
+                PolymerBlockModel.of(Identifier.of(MOD_ID, modelId)));
     }
 
     @Override

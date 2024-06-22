@@ -11,6 +11,7 @@
     }
   },
   "result": {
-    "item": "lifesteal:heart_crystal"
+    "count": 1,
+    "id": "lifesteal:heart_crystal"
   }
 }

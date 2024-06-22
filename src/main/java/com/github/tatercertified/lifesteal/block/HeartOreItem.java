@@ -20,7 +20,7 @@ public class HeartOreItem extends BlockItem implements PolymerItem {
 
     public HeartOreItem(Settings settings, Block block, String modelId) {
         super(block, settings);
-        this.polymerModel = PolymerResourcePackUtils.requestModel(Items.BARRIER, new Identifier(MOD_ID, modelId));
+        this.polymerModel = PolymerResourcePackUtils.requestModel(Items.BARRIER, Identifier.of(MOD_ID, modelId));
 
     }
 

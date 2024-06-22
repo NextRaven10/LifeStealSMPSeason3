@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 
 public class Ores {
 
-    public static final RegistryKey<PlacedFeature> HEART_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(Loader.MOD_ID,"heart_ore"));
+    public static final RegistryKey<PlacedFeature> HEART_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(Loader.MOD_ID,"heart_ore"));
     public static void initOres() {
         if (Config.generateOres) {
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, HEART_ORE_PLACED_KEY);

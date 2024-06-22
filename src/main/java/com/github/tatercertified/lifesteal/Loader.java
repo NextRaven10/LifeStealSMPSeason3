@@ -12,7 +12,6 @@ import com.github.tatercertified.lifesteal.world.gamerules.LSGameRules;
 import com.mojang.logging.LogUtils;
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -137,7 +136,7 @@ public class Loader implements ModInitializer {
 		player.sendMessage(LsText.revivee(Text.of(data.reviver)));
 		BlockPos pos = data.teleport;
 		PlayerUtils.setExactBaseHealth(player, getLargerRevivalValue(server));
-		FabricDimensions.teleport(player, data.resolveDimension(server), new TeleportTarget(pos.toCenterPos(), Vec3d.ZERO, 0.0f, 0.0f));
+		player.teleportTo(new TeleportTarget(data.resolveDimension(server), pos.toCenterPos(), Vec3d.ZERO, 0.0f, 0.0f, null));
 		player.changeGameMode(GameMode.SURVIVAL);
 	}
 

@@ -7,7 +7,7 @@
     }
   ],
   "result": {
-    "item": "lifesteal:heart_dust",
-    "count": 9
+    "count": 9,
+    "id": "lifesteal:heart_dust"
   }
 }
