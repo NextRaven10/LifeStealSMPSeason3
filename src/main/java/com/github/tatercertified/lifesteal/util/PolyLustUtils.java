@@ -61,7 +61,7 @@ public class PolyLustUtils {
      * @return The PolymerModelData referencing the item and model.
      */
     public static PolymerModelData getModelData(String path, Item mask) {
-        return PolymerResourcePackUtils.requestModel(mask, new Identifier(MOD_ID, "item/" + path));
+        return PolymerResourcePackUtils.requestModel(mask, Identifier.of(MOD_ID, "item/" + path));
     }
 
     /**
@@ -71,16 +71,7 @@ public class PolyLustUtils {
      * @param item The item to register.
      */
     public static void registerItem(String path, Item item) {
-        Registry.register(Registries.ITEM, new Identifier(MOD_ID, path), item);
-    }
-
-    /**
-     * Checks item to ensure not-null, vanilla and is {@link ArmorItem}.
-     */
-    private static ArmorItem checkArmor(Item item) {
-        check(item);
-        if (!(item instanceof ArmorItem armorItem)) throw new IllegalArgumentException("Invalid item for armour.");
-        return armorItem;
+        Registry.register(Registries.ITEM, Identifier.of(MOD_ID, path), item);
     }
 
     /**
@@ -92,10 +83,5 @@ public class PolyLustUtils {
         if (!"minecraft".equals(identifier.getNamespace())) {
             throw new IllegalArgumentException("Non-vanilla item " + item + " (" + identifier + ")");
         }
-    }
-
-    @FunctionalInterface
-    public interface QuadFunction<I1, I2, I3, I4, O> {
-        O invoke(I1 i1, I2 i2, I3 i3, I4 i4);
     }
 }

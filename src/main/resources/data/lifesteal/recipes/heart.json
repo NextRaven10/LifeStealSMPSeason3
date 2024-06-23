@@ -1,19 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " # ",
-    "#%#",
-    " # "
-  ],
   "key": {
     "#": {
       "item": "lifesteal:heart_crystal"
     },
-    "%": {
+    "X": {
       "item": "minecraft:totem_of_undying"
     }
   },
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
   "result": {
-    "item": "lifesteal:heart"
+    "count": 1,
+    "id": "lifesteal:heart"
   }
 }
